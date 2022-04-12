@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/page_checklist"
+        android:enabled="true"
+        android:icon="@drawable/ic_checklist"
+        android:title="@string/checklist" />
+    <item
+        android:id="@+id/page_habits"
+        android:enabled="true"
+        android:icon="@drawable/ic_check"
+        android:title="@string/habits" />
+    <item
+        android:id="@+id/page_statistics"
+        android:enabled="true"
+        android:icon="@drawable/ic_statistics"
+        android:title="@string/statistics"/>
+    <item
+        android:id="@+id/page_setting"
+        android:enabled="true"
+        android:icon="@drawable/ic_setting"
+        android:title="@string/settings"/>
+</menu>

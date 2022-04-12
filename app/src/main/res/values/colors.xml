@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="off_black">#FF18171a</color>
+    <color name="gray_black">#FF2f2e33</color>
+    <color name="gray">#FF47454d</color>
+    <color name="gray_while">#FFE6E6E6</color>
+
+    <color name="dark1">#FF2d0f29</color>
+    <color name="dark2">#FF53002e</color>
+    <color name="red_dark">#FF7f0031</color>
+    <color name="red">#FFcd253c</color>
+    <color name="orange">#FFfd6642</color>
+
+    <color name="habit_complete">#FFa8e68a</color>
+    <color name="habit_good">#FFcfe68a</color>
+    <color name="habit_half">#FFe6d68a</color>
+    <color name="habit_bad">#FFe6b08a</color>
+    <color name="habit_failed">#FFe68a8a</color>
+
+    <color name="habit_color_red">#FFe65050</color>
+    <color name="habit_color_orange">#FFe69b50</color>
+    <color name="habit_color_yellow">#FFe6e650</color>
+    <color name="habit_color_yellow_green">#FF9be650</color>
+    <color name="habit_color_green">#FF50e650</color>
+    <color name="habit_color_blue_green">#FF50e69b</color>
+    <color name="habit_color_cyan">#FF50e6e6</color>
+    <color name="habit_color_blue">#FF509be6</color>
+    <color name="habit_color_deep_blue">#FF5050e6</color>
+    <color name="habit_color_purple">#FF9b50e6</color>
+    <color name="habit_color_pink">#FFe650e6</color>
+    <color name="habit_color_red_pink">#FFe6509b</color>
+
+</resources>

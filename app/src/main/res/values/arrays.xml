@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="weekDays">
+        <item>@string/week_days_monday</item>
+        <item>@string/week_days_tuesday</item>
+        <item>@string/week_days_wednesday</item>
+        <item>@string/week_days_thursday</item>
+        <item>@string/week_days_friday</item>
+        <item>@string/week_days_saturday</item>
+        <item>@string/week_days_sunday</item>
+    </array>
+
+    <array name="weekDaysAbbreviated">
+        <item>@string/week_days_monday_abbreviated</item>
+        <item>@string/week_days_tuesday_abbreviated</item>
+        <item>@string/week_days_wednesday_abbreviated</item>
+        <item>@string/week_days_thursday_abbreviated</item>
+        <item>@string/week_days_friday_abbreviated</item>
+        <item>@string/week_days_saturday_abbreviated</item>
+        <item>@string/week_days_sunday_abbreviated</item>
+    </array>
+</resources>
