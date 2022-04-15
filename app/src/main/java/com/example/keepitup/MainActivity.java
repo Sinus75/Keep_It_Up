@@ -183,7 +183,6 @@ public class MainActivity extends AppCompatActivity {
     public static void setNotification(Habit habit, Context context){
         LocalDate todayDate = LocalDate.now(ZoneId.systemDefault());
         boolean[] DaysOfWeek = habit.getDaysOfWeek();
-        // TODO: Тут вылет, если приложение закрыто, а обращение происходит к shared preference
         if (habit.notification && DaysOfWeek[todayDate.getDayOfWeek().getValue()-1] && settings.getBoolean(APP_PREFERENCES_NOTIFICATIONS, false)) {
             int id = Math.toIntExact(habit.getId());
             LocalDateTime time = habit.getNotificationTime().atDate(todayDate);

@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="DialogDateTime" parent="Theme.AppCompat.DayNight.Dialog">
+    <style name="DialogCheckboxes" parent="Theme.AppCompat.Dialog">
         <item name="colorPrimary">@color/gray_while</item>
-        <item name="colorOnPrimary">@color/off_black</item>
-        <item name="colorPrimaryDark">@color/gray_black</item>
-        <item name="colorAccent">@color/off_black</item>
-        <item name="android:textAppearance">@color/off_black</item>
-        <item name="android:textColorPrimaryInverse">@color/orange</item>
-        <item name="android:textColorPrimary">@color/orange</item>
+        <item name="colorOnPrimary">@color/gray_while</item>
+        <item name="colorAccent">@color/gray_while</item>
+        <item name="android:textAppearance">@color/gray_while</item>
+        <item name="android:background">@drawable/layout_round_corners</item>
     </style>
-
 </resources>

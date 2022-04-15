@@ -5,12 +5,15 @@
       <map>
         <entry key="..\:/Users/Sinus/Desktop/KeepItUp/app/src/main/res/drawable/bottom_navigation_icon_color_selector.xml" value="0.5703125" />
         <entry key="..\:/Users/Sinus/Desktop/KeepItUp/app/src/main/res/drawable/ic_check.xml" value="0.5703125" />
+        <entry key="..\:/Users/Sinus/Desktop/KeepItUp/app/src/main/res/drawable/layout_dialog_background.xml" value="0.3515" />
+        <entry key="..\:/Users/Sinus/Desktop/KeepItUp/app/src/main/res/drawable/layout_icon_color_background.xml" value="0.3515" />
         <entry key="..\:/Users/Sinus/Desktop/KeepItUp/app/src/main/res/drawable/layout_round_corners.xml" value="0.5703125" />
         <entry key="..\:/Users/Sinus/Desktop/KeepItUp/app/src/main/res/drawable/shape_round_image.xml" value="0.5703125" />
         <entry key="..\:/Users/Sinus/Desktop/KeepItUp/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/Users/Sinus/Desktop/KeepItUp/app/src/main/res/layout/dialog_color_image.xml" value="0.5541666666666667" />
         <entry key="..\:/Users/Sinus/Desktop/KeepItUp/app/src/main/res/layout/dialog_icon_color.xml" value="0.3307291666666667" />
-        <entry key="..\:/Users/Sinus/Desktop/KeepItUp/app/src/main/res/layout/dialog_number.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/Sinus/Desktop/KeepItUp/app/src/main/res/layout/dialog_number.xml" value="0.22" />
+        <entry key="..\:/Users/Sinus/Desktop/KeepItUp/app/src/main/res/layout/dialog_time_picker.xml" value="0.22033898305084745" />
         <entry key="..\:/Users/Sinus/Desktop/KeepItUp/app/src/main/res/layout/fragment_checklist.xml" value="0.5541666666666667" />
         <entry key="..\:/Users/Sinus/Desktop/KeepItUp/app/src/main/res/layout/fragment_habits.xml" value="0.4696557971014493" />
         <entry key="..\:/Users/Sinus/Desktop/KeepItUp/app/src/main/res/layout/fragment_settings.xml" value="0.5401041666666667" />
@@ -18,7 +21,7 @@
         <entry key="..\:/Users/Sinus/Desktop/KeepItUp/app/src/main/res/layout/recycleritem_checklist.xml" value="0.5" />
         <entry key="..\:/Users/Sinus/Desktop/KeepItUp/app/src/main/res/layout/recycleritem_color_image.xml" value="0.5541666666666667" />
         <entry key="..\:/Users/Sinus/Desktop/KeepItUp/app/src/main/res/layout/recycleritem_habit.xml" value="0.5" />
-        <entry key="..\:/Users/Sinus/Desktop/KeepItUp/app/src/main/res/layout/recycleritem_icon_color.xml" value="0.3307291666666667" />
+        <entry key="..\:/Users/Sinus/Desktop/KeepItUp/app/src/main/res/layout/recycleritem_icon_color.xml" value="0.5" />
         <entry key="..\:/Users/Sinus/Desktop/KeepItUp/app/src/main/res/menu/bottom_navigation_manu.xml" value="0.5541666666666667" />
         <entry key="..\:/Users/Sinus/Desktop/KeepItUp/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.1" />
       </map>

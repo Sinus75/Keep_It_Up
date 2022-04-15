@@ -10,12 +10,15 @@ import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -23,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -137,9 +141,13 @@ public class HabitAdapter extends
             ArrayList<Integer> icons = MainActivity.getIcons();
             ArrayList<Integer> colors = new ArrayList<>();
 
+
             final Dialog d = new Dialog(context);
+            d.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             d.setContentView(R.layout.dialog_icon_color);
 
+            TextView tvIcon = d.findViewById(R.id.textView_Choose_Icon_Color);
+            tvIcon.setText(view.getResources().getString(R.string.icon_choose));
             RecyclerView recyclerView = d.findViewById(R.id.recyclerView_Icon_Color);
             recyclerView.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false));
 
@@ -154,9 +162,13 @@ public class HabitAdapter extends
             ArrayList<Integer> icons = new ArrayList<>();
             ArrayList<Integer> colors = MainActivity.getColors(context);
 
+
             final Dialog d = new Dialog(context);
+            d.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             d.setContentView(R.layout.dialog_icon_color);
 
+            TextView tvColor = d.findViewById(R.id.textView_Choose_Icon_Color);
+            tvColor.setText(view.getResources().getString(R.string.color_choose));
             RecyclerView recyclerView = d.findViewById(R.id.recyclerView_Icon_Color);
             recyclerView.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false));
 
@@ -179,11 +191,11 @@ public class HabitAdapter extends
 
         edtAmount.setOnClickListener(view -> {
             final Dialog d = new Dialog(view.getContext());
-            d.setContentView(R.layout.dialog_number);
+            d.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+            d.getWindow().setContentView(R.layout.dialog_number);
             Button btnOk = d.findViewById(R.id.button_number_ok);
             NumberPicker np = d.findViewById(R.id.numberPicker);
-
-            d.setTitle("NumberPicker");
             np.setWrapSelectorWheel(false);
 
             np.setMaxValue(20);
@@ -198,6 +210,7 @@ public class HabitAdapter extends
             });
 
             d.show();
+            d.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         });
 
         imgDelete.setOnClickListener(view -> {
@@ -209,27 +222,37 @@ public class HabitAdapter extends
         });
 
         edtNotificationTime.setOnClickListener(view -> {
-            TimePickerDialog.OnTimeSetListener timeSetListener = ((timePicker, hour, minute) ->{
-                    edtNotificationTime.setText(String.format(Locale.getDefault(),
-                            "%02d:%02d", hour , minute));
-                    habit.setNotificationTime(LocalTime.of(hour, minute));
-                    habitDao.update(habit);
-                    setNotification(habit, view.getContext());
+            final Dialog d = new Dialog(view.getContext());
+            d.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+            d.getWindow().setContentView(R.layout.dialog_time_picker);
+
+            Button btnOk = d.findViewById(R.id.button_time_ok);
+            TimePicker timePicker = d.findViewById(R.id.timePicker);
+            timePicker.setIs24HourView(true);
+
+            int hour = habit.getNotificationTime().getHour();
+            int minute = habit.getNotificationTime().getMinute();
+            timePicker.setHour(hour);
+            timePicker.setMinute(minute);
+
+            btnOk.setOnClickListener(view_ -> {
+                int hour_ = timePicker.getHour(), minute_ = timePicker.getMinute();
+                edtNotificationTime.setText(String.format(Locale.getDefault(),
+                        "%02d:%02d", hour_ , minute_));
+                habit.setNotificationTime(LocalTime.of(hour_, minute_));
+                habitDao.update(habit);
+                setNotification(habit, view.getContext());
+                d.dismiss();
             });
 
-            int hour = 0, minute = 0;
-            TimePickerDialog timePickerDialog = new TimePickerDialog(view.getContext(),
-                    timeSetListener, hour, minute, true);
-
-            timePickerDialog.setButton(DialogInterface.BUTTON_POSITIVE, view.getResources().getString(R.string.ok), timePickerDialog);
-            timePickerDialog.setButton(DialogInterface.BUTTON_NEGATIVE, view.getResources().getString(R.string.cancel), timePickerDialog);
-
-            timePickerDialog.setTitle(view.getResources().getString(R.string.habit_notification_time_choose));
-            timePickerDialog.show();
+            d.show();
+            d.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         });
 
         edtWeekDays.setOnClickListener(view -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext(), R.style.DialogCheckboxes);
             builder.setTitle(view.getResources().getString(R.string.week_days_choose));
 
             boolean[] daysOfWeek = habit.getDaysOfWeek();
@@ -248,6 +271,7 @@ public class HabitAdapter extends
                     });
 
             AlertDialog dialog = builder.create();
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.show();
         });
     }

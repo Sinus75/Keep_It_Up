@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="32dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/layout_round_corners"
     android:orientation="vertical">
 
-    <NumberPicker
-        android:id="@+id/numberPicker"
+    <TimePicker
+        android:id="@+id/timePicker"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginVertical="8dp"
-        android:layout_weight="1" />
+        android:timePickerMode="spinner" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -25,7 +20,7 @@
         android:orientation="horizontal">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_number_ok"
+            android:id="@+id/button_time_ok"
             android:stateListAnimator="@null"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -42,7 +37,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/view"
             app:layout_constraintVertical_bias="0.86" />
-
     </LinearLayout>
-
 </LinearLayout>

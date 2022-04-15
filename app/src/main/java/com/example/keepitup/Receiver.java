@@ -1,7 +1,10 @@
 package com.example.keepitup;
 
+import static com.example.keepitup.MainActivity.APP_PREFERENCES;
+import static com.example.keepitup.MainActivity.APP_PREFERENCES_NOTIFICATIONS;
 import static com.example.keepitup.MainActivity.habitDao;
 import static com.example.keepitup.MainActivity.setNotification;
+import static com.example.keepitup.MainActivity.settings;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -27,6 +30,7 @@ public class Receiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Bundle arguments = intent.getBundleExtra("BUNDLE");
         Habit habit = (Habit) arguments.getSerializable(Habit.class.getSimpleName());
+        settings = context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
 
         long id = habit.getId();
         String name = habit.getName();
@@ -69,7 +73,6 @@ public class Receiver extends BroadcastReceiver {
         }
 
         mNotificationManager.notify(Math.toIntExact(id), mBuilder.build());
-
         setNotification(habit, context);
     }
 }

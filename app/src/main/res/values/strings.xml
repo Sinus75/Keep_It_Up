@@ -17,6 +17,8 @@
     <string name="cancel">Отмена</string>
 
     <string name="week_days_choose">Выберите дни недели</string>
+    <string name="icon_choose">Выберите иконку</string>
+    <string name="color_choose">Выберите цвет</string>
 
     <string name="week_days_monday">Понедельник</string>
     <string name="week_days_tuesday">Вторник</string>

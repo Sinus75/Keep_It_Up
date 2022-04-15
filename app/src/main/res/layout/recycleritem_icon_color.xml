@@ -4,12 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="8dp"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/imageView_Icon_Color"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@color/gray"
-        app:tint="@color/gray_while" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="15dp">
+
+        <ImageView
+            android:id="@+id/imageView_Icon_Color"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@color/gray"
+            android:scaleType="center"
+            android:scaleX="2.2"
+            android:scaleY="2.2"
+            app:tint="@color/gray_while" />
+    </androidx.cardview.widget.CardView>
+
 </LinearLayout>
