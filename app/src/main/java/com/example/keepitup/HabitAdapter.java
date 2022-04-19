@@ -98,7 +98,6 @@ public class HabitAdapter extends
         EditText edtNotificationTime = holder.edtNotificationTime;
         CheckBox cbNotification      = holder.cbNotification;
 
-
         putWeekDaysIntoEditText(habit.getDaysOfWeek(), edtWeekDays);
         imgIcon.setColorFilter(habit.getColor());
         imgIcon.setImageResource(habit.getImage());

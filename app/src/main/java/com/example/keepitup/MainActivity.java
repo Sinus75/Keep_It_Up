@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     public static SharedPreferences settings;
     public static SharedPreferences.Editor editor;
     public static HabitDao habitDao;
+    public static HabitCompletedByDateDao habitCompletedByDateDao;
     public static List<Habit> habits;
     private Context context;
 
@@ -53,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         initFields();
         UpdateCompleted();
         initAdapters();
-        //cancelNotifications(context);
         setNotifications(context);
 
         //Возвращение назад времени
@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         settings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         editor = settings.edit();
         habitDao = db.habitDao();
+        habitCompletedByDateDao = db.habitCompletedByDateDao();
         habits = new ArrayList();
         context = getApplicationContext();
 
@@ -153,10 +154,17 @@ public class MainActivity extends AppCompatActivity {
     public static void UpdateCompleted(){
         LocalDate today = LocalDate.now(ZoneId.systemDefault());
         long todayLong = today.toEpochDay();
+        for (HabitCompletedByDate date : habitCompletedByDateDao.getAll()){
+            Log.d("TAG", "UpdateCompleted: " + date.getHabit_id() + " " + date.getDate() + " " + date.getPercentCompleted());
+        }
+
         if(settings.contains(APP_PREFERENCES_DATE)) {
             if (settings.getLong(APP_PREFERENCES_DATE, 1) != todayLong) {
                 editor.putLong(APP_PREFERENCES_DATE, todayLong);
                 for (Habit habit: habitDao.getAll()) {
+                    int percentCompleted = (int) Math.round(habit.getCompleted() / habit.getAmountPerDay() * 100);
+                    HabitCompletedByDate date = new HabitCompletedByDate(habit.getId(),todayLong, percentCompleted);
+                    habitCompletedByDateDao.insertDate(date);
                     habit.setCompleted(0);
                     habitDao.update(habit);
                 }

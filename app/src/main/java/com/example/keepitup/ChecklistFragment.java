@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChecklistFragment extends Fragment {
-    private RecyclerView recyclerView;
+    private RecyclerView rvChecklist;
     private HabitCheckAdapter adapter;
     private List<Habit> habits;
     private HabitDao habitDao;
@@ -45,7 +45,7 @@ public class ChecklistFragment extends Fragment {
 
     private void initFields(View thisView) {
         habits = new ArrayList<>();
-        recyclerView = thisView.findViewById(R.id.recyclerView_Checklist);
+        rvChecklist = thisView.findViewById(R.id.recyclerView_Checklist);
         adapter = new HabitCheckAdapter(habits);
         habitDao = db.habitDao();
         context = thisView.getContext();
@@ -58,7 +58,7 @@ public class ChecklistFragment extends Fragment {
             if (DaysOfWeek[todayDate.getDayOfWeek().getValue()-1]) habits.add(habit);
         }
 
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        rvChecklist.setAdapter(adapter);
+        rvChecklist.setLayoutManager(new LinearLayoutManager(context));
     }
 }
