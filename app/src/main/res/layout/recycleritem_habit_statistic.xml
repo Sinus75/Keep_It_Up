@@ -50,10 +50,18 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <CalendarView
+        <com.applandeo.materialcalendarview.CalendarView
             android:id="@+id/calendarView_Statistic"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            app:abbreviationsBarColor="@color/gray"
+            app:eventsEnabled="true"
+            app:abbreviationsLabelsColor="@color/gray_while"
+            app:anotherMonthsDaysLabelsColor="@color/gray"
+            app:daysLabelsColor="@color/gray_while"
+            app:headerColor="@color/gray_black"
+            app:headerLabelColor="@color/gray_while"
+            app:pagesColor="@color/gray_black" />
     </LinearLayout>
 
 

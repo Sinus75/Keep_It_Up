@@ -104,14 +104,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void loadFragment(Fragment fragment){
+    private void loadFragment(Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragmentContainerView, fragment)
                 .commit();
     }
 
-    public static ArrayList<Integer> getIcons(){
+    public static ArrayList<Integer> getIcons() {
         ArrayList<Integer> icons = new ArrayList<>();
 
         icons.add(R.drawable.ic_habit_alarm);
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         return icons;
     }
 
-    public static ArrayList<Integer> getColors(Context context){
+    public static ArrayList<Integer> getColors(Context context) {
         ArrayList<Integer> colors = new ArrayList<>();
 
         colors.add(ContextCompat.getColor(context, R.color.habit_color_red));
@@ -151,22 +151,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //С каждым днём обновляет, выполеные привычки и записывает дату в shared preferences
-    public static void UpdateCompleted(){
+    public static void UpdateCompleted() {
         LocalDate today = LocalDate.now(ZoneId.systemDefault());
         long todayLong = today.toEpochDay();
-        for (HabitCompletedByDate date : habitCompletedByDateDao.getAll()){
-            Log.d("TAG", "UpdateCompleted: " + date.getHabit_id() + " " + date.getDate() + " " + date.getPercentCompleted());
-        }
 
         if(settings.contains(APP_PREFERENCES_DATE)) {
             if (settings.getLong(APP_PREFERENCES_DATE, 1) != todayLong) {
                 editor.putLong(APP_PREFERENCES_DATE, todayLong);
                 for (Habit habit: habitDao.getAll()) {
-                    int percentCompleted = (int) Math.round(habit.getCompleted() / habit.getAmountPerDay() * 100);
+                    int percentCompleted = (int) Math.round(habit.getCompleted()  * 100 / habit.getAmountPerDay());
                     HabitCompletedByDate date = new HabitCompletedByDate(habit.getId(),todayLong, percentCompleted);
+
                     habitCompletedByDateDao.insertDate(date);
                     habit.setCompleted(0);
                     habitDao.update(habit);
+
                 }
             }
         }
@@ -176,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    public static void setNotifications(Context context){
+    public static void setNotifications(Context context) {
         for (Habit habit : habitDao.getAll()){
             setNotification(habit, context);
         }

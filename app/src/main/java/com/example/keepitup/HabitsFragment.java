@@ -66,7 +66,7 @@ public class HabitsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
         btnAdd.setOnClickListener(view -> {
-            Habit newHabit = new Habit("Habit1",R.drawable.ic_setting,
+            Habit newHabit = new Habit("Habit",R.drawable.ic_setting,
                     ContextCompat.getColor(context, R.color.habit_color_cyan),
                     1, daysOfWeek,false, time, 0);
             habitDao.insertHabit(newHabit);

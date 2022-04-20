@@ -50,8 +50,6 @@ public class StatisticsFragment extends Fragment {
     }
 
     private void initAdapters(View thisView) {
-
-
         for (Habit habit: habitDao.getAll()){
             habits.add(habit);
         }
