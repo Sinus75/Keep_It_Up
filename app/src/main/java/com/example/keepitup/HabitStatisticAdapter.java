@@ -1,36 +1,24 @@
 package com.example.keepitup;
 
 import static com.example.keepitup.MainActivity.db;
-import static com.example.keepitup.MainActivity.settings;
-
-import static java.time.format.SignStyle.NORMAL;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
-import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.applandeo.materialcalendarview.CalendarUtils;
 import com.applandeo.materialcalendarview.EventDay;
-import com.google.android.material.card.MaterialCardView;
-import com.google.android.material.datepicker.MaterialCalendar;
 
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -46,18 +34,19 @@ public class HabitStatisticAdapter extends
     public HabitStatisticAdapter(List<Habit> habitList){habits = habitList;}
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public LinearLayout llStatistic;
+        public RelativeLayout llStatistic;
         public ImageView imgIcon, imgOpenClose;
-        public TextView tvName;
+        public TextView tvName, tvdayStreak;
         public com.applandeo.materialcalendarview.CalendarView cvStatistic;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            llStatistic         = itemView.findViewById(R.id.linearLayout_Statistic);
+            llStatistic         = itemView.findViewById(R.id.relativeLayout_Statistic);
             imgIcon             = itemView.findViewById(R.id.imageView_Icon_Statistic);
             imgOpenClose        = itemView.findViewById(R.id.imageView_OpenClose_Statistic);
             tvName              = itemView.findViewById(R.id.textView_Name_Statistic);
             cvStatistic         = itemView.findViewById(R.id.calendarView_Statistic);
+            tvdayStreak         = itemView.findViewById(R.id.textView_Count_Statistic);
         }
     }
 
@@ -74,16 +63,19 @@ public class HabitStatisticAdapter extends
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Habit habit = habits.get(position);
-        LinearLayout llStatistic                                    = holder.llStatistic;
+        RelativeLayout llStatistic                                  = holder.llStatistic;
         ImageView imgIcon                                           = holder.imgIcon;
         ImageView imgOpenClose                                      = holder.imgOpenClose;
         TextView tvName                                             = holder.tvName;
+        TextView tvdayStreak                                        = holder.tvdayStreak;
         com.applandeo.materialcalendarview.CalendarView cvStatistic = holder.cvStatistic;
+
 
         imgIcon.setImageResource(habit.getImage());
         imgIcon.setColorFilter(habit.getColor());
         tvName.setText(habit.getName());
         llStatistic.setVisibility(View.GONE);
+        tvdayStreak.setText(tvdayStreak.getText() + " " + habit.getDayStreak());
 
         List<EventDay> eventDays = new ArrayList<>();
         for (HabitCompletedByDate date: habitCompletedByDateDao.loadAllByIds(habit.getId())) {

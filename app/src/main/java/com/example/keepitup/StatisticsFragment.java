@@ -1,5 +1,6 @@
 package com.example.keepitup;
 
+import static com.example.keepitup.MainActivity.UpdateCompleted;
 import static com.example.keepitup.MainActivity.db;
 
 import android.content.Context;
@@ -37,6 +38,7 @@ public class StatisticsFragment extends Fragment {
         View thisView = inflater.inflate(R.layout.fragment_statistics, container, false);
         initFields(thisView);
         initAdapters(thisView);
+        UpdateCompleted();
         return thisView;
     }
 

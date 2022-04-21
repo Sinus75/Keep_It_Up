@@ -37,5 +37,7 @@
     <string name="week_days_sunday_abbreviated">Вс</string>
     <string name="week_days_never">Никогда</string>
 
+    <string name="day_streak">Дней подряд:</string>
+
     <string name="notifications_allowed">Разрешить уведомления</string>
 </resources>

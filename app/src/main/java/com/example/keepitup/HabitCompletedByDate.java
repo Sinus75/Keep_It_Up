@@ -1,5 +1,6 @@
 package com.example.keepitup;
 
+import static androidx.room.ForeignKey.CASCADE;
 import static androidx.room.ForeignKey.NO_ACTION;
 
 import androidx.room.ColumnInfo;
@@ -9,7 +10,7 @@ import androidx.room.PrimaryKey;
 
 import java.time.LocalDate;
 
-@Entity(foreignKeys = @ForeignKey(entity = Habit.class, parentColumns = "id", childColumns = "habit_id", onDelete = NO_ACTION))
+@Entity(foreignKeys = @ForeignKey(entity = Habit.class, parentColumns = "id", childColumns = "habit_id", onDelete = CASCADE))
 public class HabitCompletedByDate {
     @PrimaryKey(autoGenerate = true)
     public long id;

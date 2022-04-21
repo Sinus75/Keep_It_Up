@@ -7,6 +7,7 @@ import static com.example.keepitup.MainActivity.setNotifications;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.NotificationManager;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -218,6 +219,10 @@ public class HabitAdapter extends
             notifyItemRemoved(position);
             notifyItemRangeChanged(position, habits.size());
             cancelNotification(habit, view.getContext());
+
+            NotificationManager mNotificationManager =
+                    (NotificationManager) view.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+            mNotificationManager.deleteNotificationChannel(String.valueOf(habit.getId()));
         });
 
         edtNotificationTime.setOnClickListener(view -> {

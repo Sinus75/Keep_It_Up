@@ -1,6 +1,7 @@
 package com.example.keepitup;
 
 import static com.example.keepitup.MainActivity.APP_PREFERENCES_NOTIFICATIONS;
+import static com.example.keepitup.MainActivity.UpdateCompleted;
 import static com.example.keepitup.MainActivity.cancelNotifications;
 import static com.example.keepitup.MainActivity.editor;
 import static com.example.keepitup.MainActivity.setNotifications;
@@ -30,6 +31,7 @@ public class SettingsFragment extends Fragment {
         View thisView = inflater.inflate(R.layout.fragment_settings, container, false);
         initFields(thisView);
         initAdapters(thisView);
+        UpdateCompleted();
         return thisView;
     }
 

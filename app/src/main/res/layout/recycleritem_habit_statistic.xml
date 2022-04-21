@@ -11,8 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        android:layout_weight="1">
 
         <ImageView
             android:id="@+id/imageView_Icon_Statistic"
@@ -21,13 +20,31 @@
             app:tint="@color/gray_while"
             tools:srcCompat="@drawable/ic_setting" />
 
-        <TextView
-            android:id="@+id/textView_Name_Statistic"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:text="Habit Name" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView_Name_Statistic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:baselineAligned="false"
+                android:gravity="center_vertical"
+                android:text="Habit Name" />
+
+            <TextView
+                android:id="@+id/textView_Count_Statistic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:baselineAligned="false"
+                android:gravity="center_vertical"
+                android:text="@string/day_streak"
+                android:textSize="14sp" />
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/imageView_OpenClose_Statistic"
@@ -43,26 +60,27 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout_Statistic"
+    <RelativeLayout
+        android:id="@+id/relativeLayout_Statistic"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical">
 
         <com.applandeo.materialcalendarview.CalendarView
             android:id="@+id/calendarView_Statistic"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:abbreviationsBarColor="@color/gray"
-            app:eventsEnabled="true"
             app:abbreviationsLabelsColor="@color/gray_while"
             app:anotherMonthsDaysLabelsColor="@color/gray"
             app:daysLabelsColor="@color/gray_while"
+            app:eventsEnabled="true"
             app:headerColor="@color/gray_black"
             app:headerLabelColor="@color/gray_while"
-            app:pagesColor="@color/gray_black" />
-    </LinearLayout>
+            app:pagesColor="@color/gray_black"
+            app:todayLabelColor="@color/habit_color_orange" />
+    </RelativeLayout>
 
 
 </LinearLayout>

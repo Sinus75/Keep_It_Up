@@ -66,7 +66,7 @@ public class Receiver extends BroadcastReceiver {
             String channelId = String.valueOf(id);
             NotificationChannel channel = new NotificationChannel(
                     channelId,
-                    "Channel human readable title",
+                    habit.getName(),
                     NotificationManager.IMPORTANCE_HIGH);
             mNotificationManager.createNotificationChannel(channel);
             mBuilder.setChannelId(channelId);

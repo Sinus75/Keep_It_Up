@@ -45,8 +45,11 @@ public class Habit implements Serializable {
     @ColumnInfo(name = "completed")
     public int completed;
 
+    @ColumnInfo(name = "dayStreak")
+    public int dayStreak;
+
     public Habit(String name, int image, int color, int amountPerDay, boolean[] daysOfWeek,
-                 boolean notification, LocalTime notificationTime, int completed) {
+                 boolean notification, LocalTime notificationTime, int completed, int dayStreak) {
         this.name = name;
         this.image = image;
         this.color = color;
@@ -55,6 +58,7 @@ public class Habit implements Serializable {
         this.notification = notification;
         this.notificationTime = notificationTime;
         this.completed = completed;
+        this.dayStreak = dayStreak;
     }
 
     public String getName() {
@@ -118,5 +122,12 @@ public class Habit implements Serializable {
     }
     public void setCompleted(int completed) {
         this.completed = completed;
+    }
+
+    public int getDayStreak() {
+        return dayStreak;
+    }
+    public void setDayStreak(int dayStreak) {
+        this.dayStreak = dayStreak;
     }
 }

@@ -156,17 +156,26 @@ public class MainActivity extends AppCompatActivity {
         long todayLong = today.toEpochDay();
 
         if(settings.contains(APP_PREFERENCES_DATE)) {
-            if (settings.getLong(APP_PREFERENCES_DATE, 1) != todayLong) {
-                editor.putLong(APP_PREFERENCES_DATE, todayLong);
+            long longFromPreferences = settings.getLong(APP_PREFERENCES_DATE, 1);
+            for (;longFromPreferences < todayLong; longFromPreferences++){
                 for (Habit habit: habitDao.getAll()) {
-                    int percentCompleted = (int) Math.round(habit.getCompleted()  * 100 / habit.getAmountPerDay());
-                    HabitCompletedByDate date = new HabitCompletedByDate(habit.getId(),todayLong, percentCompleted);
 
-                    habitCompletedByDateDao.insertDate(date);
-                    habit.setCompleted(0);
-                    habitDao.update(habit);
+                    boolean[] DaysOfWeek = habit.getDaysOfWeek();
+                    LocalDate dateFromPreferences = LocalDate.ofEpochDay(longFromPreferences);
 
+                    if (DaysOfWeek[dateFromPreferences.getDayOfWeek().getValue()-1]){
+                        int percentCompleted = (int) Math.round(habit.getCompleted()  * 100 / habit.getAmountPerDay());
+                        HabitCompletedByDate date = new HabitCompletedByDate(habit.getId(), longFromPreferences, percentCompleted);
+
+                        if (percentCompleted != 0) habit.setDayStreak(habit.getDayStreak()+1);
+                        else habit.setDayStreak(0);
+
+                        habitCompletedByDateDao.insertDate(date);
+                        habit.setCompleted(0);
+                        habitDao.update(habit);
+                    }
                 }
+                editor.putLong(APP_PREFERENCES_DATE, todayLong);
             }
         }
         else {

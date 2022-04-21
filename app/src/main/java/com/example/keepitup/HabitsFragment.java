@@ -1,5 +1,6 @@
 package com.example.keepitup;
 
+import static com.example.keepitup.MainActivity.UpdateCompleted;
 import static com.example.keepitup.MainActivity.db;
 import static com.example.keepitup.MainActivity.setNotification;
 
@@ -43,6 +44,7 @@ public class HabitsFragment extends Fragment {
 
         initFields(thisView);
         initAdapters(thisView);
+        UpdateCompleted();
 
         return thisView;
     }
@@ -68,7 +70,7 @@ public class HabitsFragment extends Fragment {
         btnAdd.setOnClickListener(view -> {
             Habit newHabit = new Habit("Habit",R.drawable.ic_setting,
                     ContextCompat.getColor(context, R.color.habit_color_cyan),
-                    1, daysOfWeek,false, time, 0);
+                    1, daysOfWeek,false, time, 0, 0);
             habitDao.insertHabit(newHabit);
             habits.clear();
             habits.addAll(habitDao.getAll());
