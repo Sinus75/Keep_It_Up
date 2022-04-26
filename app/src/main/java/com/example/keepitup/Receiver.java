@@ -46,7 +46,7 @@ public class Receiver extends BroadcastReceiver {
         PendingIntent pendingIntent = PendingIntent.getActivity(context, Math.toIntExact(id), ii, 0);
 
         NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
-        bigText.bigText("Everyday we stray further from the god");
+        bigText.bigText(context.getResources().getText(R.string.habit_notification_text));
         bigText.setBigContentTitle(name);
         bigText.setSummaryText("Text in detail");
 

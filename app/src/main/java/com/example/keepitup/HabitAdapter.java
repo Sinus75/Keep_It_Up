@@ -13,9 +13,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.InsetDrawable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +32,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -214,15 +217,35 @@ public class HabitAdapter extends
         });
 
         imgDelete.setOnClickListener(view -> {
-            habitDao.delete(habit);
-            habits.remove(position);
-            notifyItemRemoved(position);
-            notifyItemRangeChanged(position, habits.size());
-            cancelNotification(habit, view.getContext());
 
-            NotificationManager mNotificationManager =
-                    (NotificationManager) view.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
-            mNotificationManager.deleteNotificationChannel(String.valueOf(habit.getId()));
+            DialogInterface.OnClickListener dialogClickListener = (dialog, which) -> {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        habitDao.delete(habit);
+                        habits.remove(position);
+                        notifyItemRemoved(position);
+                        notifyItemRangeChanged(position, habits.size());
+                        cancelNotification(habit, view.getContext());
+
+                        NotificationManager mNotificationManager =
+                                (NotificationManager) view.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+                        mNotificationManager.deleteNotificationChannel(String.valueOf(habit.getId()));
+                        break;
+                }
+            };
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext(), R.style.DialogCheckboxes);
+            builder.setMessage(view.getResources().getText(R.string.delete_habit))
+                    .setPositiveButton(view.getResources().getText(R.string.yes), dialogClickListener)
+                    .setNegativeButton(view.getResources().getText(R.string.no), dialogClickListener);
+            AlertDialog dialog = builder.create();
+
+            ColorDrawable back = new ColorDrawable(Color.TRANSPARENT);
+            InsetDrawable inset = new InsetDrawable(back, 16);
+            dialog.getWindow().setBackgroundDrawable(inset);
+
+            dialog.show();
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         });
 
         edtNotificationTime.setOnClickListener(view -> {

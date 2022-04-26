@@ -52,8 +52,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initFields();
-        UpdateCompleted();
         initAdapters();
+
+        UpdateCompleted();
         setNotifications(context);
 
         //Возвращение назад времени
@@ -196,10 +197,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public static boolean allDaysAreEmpty(Habit habit){
+        for (boolean day: habit.getDaysOfWeek()) if (day) return false;
+        return true;
+    }
+
     public static void setNotification(Habit habit, Context context){
         LocalDate todayDate = LocalDate.now(ZoneId.systemDefault());
-        boolean[] DaysOfWeek = habit.getDaysOfWeek();
-        if (habit.notification && DaysOfWeek[todayDate.getDayOfWeek().getValue()-1] && settings.getBoolean(APP_PREFERENCES_NOTIFICATIONS, false)) {
+        if (habit.notification && !allDaysAreEmpty(habit) && settings.getBoolean(APP_PREFERENCES_NOTIFICATIONS, false)) {
+
             int id = Math.toIntExact(habit.getId());
             LocalDateTime time = habit.getNotificationTime().atDate(todayDate);
             Intent alarmIntent = new Intent(context, Receiver.class);
@@ -208,21 +214,28 @@ public class MainActivity extends AppCompatActivity {
             bundle.putSerializable(Habit.class.getSimpleName(), habit);
             alarmIntent.putExtra("BUNDLE", bundle);
 
-            alarmIntent.putExtra("ID", habit.getId());
-            alarmIntent.putExtra("NAME", habit.getName());
-            alarmIntent.putExtra("ICON", habit.getImage());
-            alarmIntent.putExtra("COLOR", habit.getColor());
-
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context, id, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
             AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-            if(time.isBefore(LocalDateTime.now())) time = time.plusDays(1);
+            if(time.isBefore(LocalDateTime.now()))time = time.plusDays(1);
+
+            boolean[] weekDays = habit.getDaysOfWeek();
+
+            for (int i = 0; i < 7; i++){
+                if (weekDays[time.getDayOfWeek().getValue()-1])break;
+                time = time.plusDays(1);
+            }
+
             Calendar calendar = Calendar.getInstance();
+
             //calendar.setTimeInMillis(System.currentTimeMillis());
             //calendar.set(Calendar.YEAR, time.getYear());
             //calendar.set(Calendar.MONTH, time.getMonth().getValue());
-            calendar.set(Calendar.DAY_OF_MONTH, time.getDayOfMonth());
+
+            //calendar.set(Calendar.DAY_OF_MONTH, time.getDayOfMonth());
+
+            calendar.set(Calendar.DAY_OF_YEAR, time.getDayOfYear());
             calendar.set(Calendar.HOUR_OF_DAY, time.getHour());
             calendar.set(Calendar.MINUTE, time.getMinute());
 

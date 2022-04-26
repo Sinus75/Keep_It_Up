@@ -12,9 +12,14 @@
     <string name="habit_notification">Напоминание</string>
     <string name="habit_notification_time">Время напоминания</string>
     <string name="habit_notification_time_choose">Выберите время напоминания</string>
+    <string name="habit_notification_text">Самое время заняться делом</string>
 
     <string name="ok">Ок</string>
     <string name="cancel">Отмена</string>
+
+    <string name="delete_habit">Вы уверены что хотите удалить привычку?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
 
     <string name="week_days_choose">Выберите дни недели</string>
     <string name="icon_choose">Выберите иконку</string>
