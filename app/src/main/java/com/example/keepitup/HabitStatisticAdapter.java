@@ -70,7 +70,6 @@ public class HabitStatisticAdapter extends
         TextView tvdayStreak                                        = holder.tvdayStreak;
         com.applandeo.materialcalendarview.CalendarView cvStatistic = holder.cvStatistic;
 
-
         imgIcon.setImageResource(habit.getImage());
         imgIcon.setColorFilter(habit.getColor());
         tvName.setText(habit.getName());
@@ -83,8 +82,9 @@ public class HabitStatisticAdapter extends
             calendar.setTime(Date.from(LocalDate.ofEpochDay(date.getDate()).atStartOfDay(ZoneId.systemDefault()).toInstant()));
 
             String result = date.getPercentCompleted() == 0 ? "-" : "+";
+            float density = holder.itemView.getResources().getDisplayMetrics().density;
             Drawable icon = CalendarUtils.getDrawableText(cvStatistic.getContext(), result,
-                    Typeface.defaultFromStyle(Typeface.NORMAL), getColorByPercent(date.getPercentCompleted()), 30);
+                    Typeface.defaultFromStyle(Typeface.NORMAL), getColorByPercent(date.getPercentCompleted()), (int) (80 / density));
 
             EventDay habitDate = new EventDay(calendar, icon);
             eventDays.add(habitDate);

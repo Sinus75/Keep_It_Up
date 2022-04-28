@@ -31,6 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:autoSizeTextType="uniform"
                 android:baselineAligned="false"
                 android:gravity="center_vertical"
                 android:text="Habit Name" />
@@ -48,13 +49,12 @@
 
         <ImageView
             android:id="@+id/imageView_OpenClose_Statistic"
-            android:layout_width="match_parent"
+            android:layout_width="60dp"
             android:layout_height="50dp"
             android:layout_gravity="end"
-            android:layout_weight="3"
             android:clickable="true"
-            android:scaleX="0.6"
-            android:scaleY="0.6"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
             app:srcCompat="@drawable/ic_down"
             app:tint="@color/gray_while" />
 

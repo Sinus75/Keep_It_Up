@@ -22,42 +22,40 @@
             app:tint="@color/gray_while"
             tools:srcCompat="@drawable/ic_setting" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/textView_HabitCheck_Name"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView_HabitCheck_Name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="Habit Name" />
-
-        </LinearLayout>
+            android:autoSizeTextType="uniform"
+            android:gravity="center_vertical"
+            android:text="Habit Name" />
 
         <ImageView
             android:id="@+id/imageView_HabitCheck_Remove"
-            android:layout_width="match_parent"
+            android:layout_width="40dp"
             android:layout_height="match_parent"
-            android:layout_weight="2.1"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
             app:srcCompat="@drawable/ic_remove"
             app:tint="@color/habit_failed" />
 
         <TextView
             android:id="@+id/textView_HabitCheck_Completed"
             android:layout_width="55dp"
-            android:layout_height="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:autoSizeTextType="uniform"
             android:gravity="center"
             android:text="00/00" />
 
         <ImageView
             android:id="@+id/imageView_HabitCheck_Add"
-            android:layout_width="match_parent"
+            android:layout_width="40dp"
             android:layout_height="match_parent"
-            android:layout_weight="2.1"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
             app:srcCompat="@drawable/ic_add"
             app:tint="@color/habit_complete" />
 

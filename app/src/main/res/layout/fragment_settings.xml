@@ -20,7 +20,9 @@
                 android:id="@+id/checkBox_Allow_Notifications"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:autoSizeTextType="uniform"
                 android:background="@drawable/layout_round_corners"
+                android:paddingVertical="10dp"
                 android:text="@string/notifications_allowed"
                 android:textColor="@color/gray_while" />
         </LinearLayout>

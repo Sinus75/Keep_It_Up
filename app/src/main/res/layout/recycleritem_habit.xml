@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="horizontal">
 
@@ -24,20 +24,21 @@
         <TextView
             android:id="@+id/textView_Name"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
+            android:autoSizeTextType="uniform"
             android:gravity="center_vertical"
             android:text="Habit Name" />
 
         <ImageView
             android:id="@+id/imageView_OpenClose"
-            android:layout_width="match_parent"
+            android:layout_width="60dp"
             android:layout_height="50dp"
             android:layout_gravity="end"
-            android:layout_weight="3"
             android:clickable="true"
-            android:scaleX="0.6"
-            android:scaleY="0.6"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
             app:srcCompat="@drawable/ic_down"
             app:tint="@color/gray_while" />
 
@@ -46,21 +47,30 @@
     <LinearLayout
         android:id="@+id/linearLayout_Edit"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_weight="1"
             android:orientation="horizontal">
 
+            <TextView
+                android:id="@+id/textView_invisible_for_auto_size1"
+                android:layout_width="match_parent"
+                android:layout_height="21dp"
+                android:layout_marginHorizontal="16dp"
+                android:autoSizeTextType="uniform"
+                android:maxLines="1"
+                android:visibility="invisible" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/outlinedTextField_Name"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginHorizontal="16dp"
@@ -70,7 +80,8 @@
                 app:boxCornerRadiusBottomEnd="10dp"
                 app:boxCornerRadiusBottomStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp">
+                app:boxCornerRadiusTopStart="10dp"
+                app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editText_Name"
@@ -80,9 +91,10 @@
                     android:inputType="text"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textSize="15sp" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
-        </LinearLayout>
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -137,34 +149,49 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/outlinedTextField_Week_Days"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:textColorHint="@color/gray_while"
-                app:boxBackgroundColor="@color/gray"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp">
+                android:layout_weight="1">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editText_Week_Days"
+                <TextView
+                    android:id="@+id/textView_invisible_for_auto_size2"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:autoSizeTextType="none"
-                    android:clickable="true"
-                    android:focusable="false"
-                    android:hint="@string/habit_week_days"
-                    android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textSize="15sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="21dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:autoSizeTextType="uniform"
+                    android:visibility="invisible" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/outlinedTextField_Week_Days"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/gray_while"
+                    app:boxBackgroundColor="@color/gray"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editText_week_days"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:autoSizeTextType="none"
+                        android:clickable="true"
+                        android:focusable="false"
+                        android:hint="@string/habit_week_days"
+                        android:inputType="text"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textSize="12sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </FrameLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/outlinedTextField_Amount"
@@ -223,9 +250,9 @@
                     android:id="@+id/editText_Notification_Time"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:hint="@string/habit_notification_time"
                     android:clickable="true"
                     android:focusable="false"
+                    android:hint="@string/habit_notification_time"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textSize="15sp" />
             </com.google.android.material.textfield.TextInputLayout>

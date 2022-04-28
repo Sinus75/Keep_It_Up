@@ -8,7 +8,7 @@
 
     <string name="habit_name">Название привычки</string>
     <string name="habit_week_days">Дни выполнения</string>
-    <string name="habit_amount">Количество выполнений</string>
+    <string name="habit_amount">Повторения</string>
     <string name="habit_notification">Напоминание</string>
     <string name="habit_notification_time">Время напоминания</string>
     <string name="habit_notification_time_choose">Выберите время напоминания</string>

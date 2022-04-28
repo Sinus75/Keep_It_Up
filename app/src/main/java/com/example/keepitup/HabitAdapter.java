@@ -3,12 +3,10 @@ package com.example.keepitup;
 import static com.example.keepitup.MainActivity.cancelNotification;
 import static com.example.keepitup.MainActivity.db;
 import static com.example.keepitup.MainActivity.setNotification;
-import static com.example.keepitup.MainActivity.setNotifications;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.NotificationManager;
-import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -17,11 +15,10 @@ import android.graphics.drawable.InsetDrawable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Gravity;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -32,16 +29,15 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.w3c.dom.Text;
+
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.TimeZone;
 
 public class HabitAdapter extends
         RecyclerView.Adapter<HabitAdapter.ViewHolder>{
@@ -54,7 +50,7 @@ public class HabitAdapter extends
     public class ViewHolder extends RecyclerView.ViewHolder {
         public LinearLayout llEdit;
         public ImageView imgIcon, imgIconEdit, imgColorEdit, imgOpenClose, imgDelete;
-        public TextView tvName;
+        public TextView tvName, tvinvisible1, tvinvisible2;
         public EditText edtName, edtWeekDays, edtAmount, edtNotificationTime;
         public CheckBox cbNotification;
 
@@ -69,10 +65,13 @@ public class HabitAdapter extends
             imgDelete           = itemView.findViewById(R.id.imageView_Delete);
             tvName              = itemView.findViewById(R.id.textView_Name);
             edtName             = itemView.findViewById(R.id.editText_Name);
-            edtWeekDays         = itemView.findViewById(R.id.editText_Week_Days);
+            edtWeekDays         = itemView.findViewById(R.id.editText_week_days);
             edtAmount           = itemView.findViewById(R.id.editText_Amount);
             edtNotificationTime = itemView.findViewById(R.id.editText_Notification_Time);
             cbNotification      = itemView.findViewById(R.id.checkBox_Notification);
+
+            tvinvisible1        = itemView.findViewById(R.id.textView_invisible_for_auto_size1);
+            tvinvisible2        = itemView.findViewById(R.id.textView_invisible_for_auto_size2);
         }
     }
 
@@ -102,6 +101,9 @@ public class HabitAdapter extends
         EditText edtNotificationTime = holder.edtNotificationTime;
         CheckBox cbNotification      = holder.cbNotification;
 
+        TextView tvinvisible1        = holder.tvinvisible1;
+        TextView tvinvisible2        = holder.tvinvisible2;
+
         putWeekDaysIntoEditText(habit.getDaysOfWeek(), edtWeekDays);
         imgIcon.setColorFilter(habit.getColor());
         imgIcon.setImageResource(habit.getImage());
@@ -114,6 +116,9 @@ public class HabitAdapter extends
         edtNotificationTime.setText(habit.getNotificationTime().toString());
         cbNotification.setChecked(habit.isNotification());
         imgOpenClose.setImageResource(R.drawable.ic_down);
+
+        setAutoresize(tvinvisible1, edtName);
+        setAutoresize(tvinvisible2, edtWeekDays);
 
         cbNotification.setOnClickListener(view -> {
             Context context = view.getContext();
@@ -301,6 +306,27 @@ public class HabitAdapter extends
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.show();
         });
+    }
+
+    public void setAutoresize(TextView tvInvisible, EditText editText){
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                tvInvisible.setText(editText.getText());
+                editText.setTextSize(autoSizeText(tvInvisible));
+            }
+        });
+    }
+
+    public float autoSizeText(TextView textView){
+        float density = textView.getResources().getDisplayMetrics().density;
+        return textView.getTextSize() / density;
     }
 
     public void putWeekDaysIntoEditText(boolean[] daysOfWeek, EditText edtWeekDays){
