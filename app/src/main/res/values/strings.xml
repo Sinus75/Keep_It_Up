@@ -21,6 +21,8 @@
     <string name="yes">Да</string>
     <string name="no">Нет</string>
 
+    <string name="progress">Прогресс</string>
+
     <string name="week_days_choose">Выберите дни недели</string>
     <string name="icon_choose">Выберите иконку</string>
     <string name="color_choose">Выберите цвет</string>

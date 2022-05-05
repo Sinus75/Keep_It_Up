@@ -38,7 +38,6 @@ public class Receiver extends BroadcastReceiver {
         int color = habit.getColor();
 
         Log.d("TAG", "RECEIVE - " + name + " " + id);
-        Toast.makeText(context, "Alarm running", Toast.LENGTH_SHORT).show();
 
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context, String.valueOf(id));

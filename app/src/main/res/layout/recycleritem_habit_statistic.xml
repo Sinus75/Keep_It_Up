@@ -60,27 +60,63 @@
 
     </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout_Statistic"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_weight="1">
 
-        <com.applandeo.materialcalendarview.CalendarView
-            android:id="@+id/calendarView_Statistic"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/relativeLayout_Statistic"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:abbreviationsBarColor="@color/gray"
-            app:abbreviationsLabelsColor="@color/gray_while"
-            app:anotherMonthsDaysLabelsColor="@color/gray"
-            app:daysLabelsColor="@color/gray_while"
-            app:eventsEnabled="true"
-            app:headerColor="@color/gray_black"
-            app:headerLabelColor="@color/gray_while"
-            app:pagesColor="@color/gray_black"
-            app:todayLabelColor="@color/habit_color_orange" />
-    </RelativeLayout>
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/view_divider1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:layout_weight="1"
+                android:background="@color/gray_while" />
+
+            <com.applandeo.materialcalendarview.CalendarView
+                android:id="@+id/calendarView_Statistic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/view_divider1"
+                app:abbreviationsBarColor="@color/gray"
+                app:abbreviationsLabelsColor="@color/gray_while"
+                app:anotherMonthsDaysLabelsColor="@color/gray"
+                app:daysLabelsColor="@color/gray_while"
+                app:eventsEnabled="true"
+                app:headerColor="@color/gray_black"
+                app:headerLabelColor="@color/gray_while"
+                app:pagesColor="@color/gray_black"
+                app:todayLabelColor="@color/habit_color_orange">
+
+            </com.applandeo.materialcalendarview.CalendarView>
+
+            <View
+                android:id="@+id/view_divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/calendarView_Statistic"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:layout_weight="1"
+                android:background="@color/gray_while" />
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/lineChart_Statistic"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@id/view_divider2"
+                android:layout_weight="1"
+                android:background="@color/gray" />
+
+        </RelativeLayout>
+    </ScrollView>
 
 
 </LinearLayout>

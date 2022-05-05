@@ -12,7 +12,9 @@ import java.time.LocalDate;
 
 @Entity(foreignKeys = @ForeignKey(entity = Habit.class, parentColumns = "id", childColumns = "habit_id", onDelete = CASCADE))
 public class HabitCompletedByDate {
+
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
     public long id;
 
     @ColumnInfo(name = "habit_id")

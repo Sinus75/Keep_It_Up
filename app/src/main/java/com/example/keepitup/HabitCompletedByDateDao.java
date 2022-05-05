@@ -16,6 +16,9 @@ public interface HabitCompletedByDateDao {
     @Query("SELECT * FROM habitcompletedbydate WHERE habit_id IN (:habitId)")
     List<HabitCompletedByDate> loadAllByIds(long habitId);
 
+    @Query("SELECT * FROM (SELECT * FROM habitcompletedbydate WHERE habit_id IN (:habitId)" + "ORDER BY id desc Limit 10) ORDER BY id ASC")
+    List<HabitCompletedByDate> loadAllByIdsLastTen(long habitId);
+
     @Insert
     void insertAll(List<HabitCompletedByDate> habitsCompletedByDates);
 
