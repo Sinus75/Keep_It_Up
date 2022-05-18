@@ -120,7 +120,7 @@ public class HabitStatisticAdapter extends
             circleColor.add(percentColor);
             i++;
         }
-        color.remove(0);
+        if(color.size() != 0 )color.remove(0);
 
         List<EventDay> eventDays = new ArrayList<>();
         for (HabitCompletedByDate date: habitCompletedByDateDao.loadAllByIds(habit.getId())) {

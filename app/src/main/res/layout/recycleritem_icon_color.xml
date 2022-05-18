@@ -15,12 +15,12 @@
 
         <ImageView
             android:id="@+id/imageView_Icon_Color"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:background="@color/gray"
             android:scaleType="center"
-            android:scaleX="2.2"
-            android:scaleY="2.2"
+            android:scaleX="2.8"
+            android:scaleY="2.8"
             app:tint="@color/gray_while" />
     </androidx.cardview.widget.CardView>
 
