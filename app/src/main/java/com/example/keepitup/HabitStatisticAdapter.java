@@ -91,7 +91,7 @@ public class HabitStatisticAdapter extends
         imgIcon.setColorFilter(habitColor);
         tvName.setText(habit.getName());
         llStatistic.setVisibility(View.GONE);
-        tvdayStreak.setText(tvdayStreak.getText() + " " + habit.getDayStreak());
+        tvdayStreak.setText(tvdayStreak.getResources().getString(R.string.day_streak)  + " " + habit.getDayStreak());
 
         lcStatistic.getAxisLeft().setAxisMaximum(100);
         lcStatistic.getAxisRight().setAxisMaximum(100);
@@ -112,6 +112,7 @@ public class HabitStatisticAdapter extends
         List<Integer> circleColor = new ArrayList<>();
         float density = holder.itemView.getResources().getDisplayMetrics().density;
         int i = 0;
+
         for (HabitCompletedByDate date: habitCompletedByDateDao.loadAllByIdsLastTen(habit.getId())){
             Log.d("TAG", "onBindViewHolder: " + date.getId());
             listDate.add(new Entry(i, date.getPercentCompleted()));
@@ -120,7 +121,7 @@ public class HabitStatisticAdapter extends
             circleColor.add(percentColor);
             i++;
         }
-        if(color.size() != 0 )color.remove(0);
+        if(color.size() > 1 )color.remove(0);
 
         List<EventDay> eventDays = new ArrayList<>();
         for (HabitCompletedByDate date: habitCompletedByDateDao.loadAllByIds(habit.getId())) {
@@ -136,6 +137,7 @@ public class HabitStatisticAdapter extends
             eventDays.add(habitDate);
             Log.d("TAG", "onBindViewHolder: " + date.getPercentCompleted() + " " + getColorByPercent(date.getPercentCompleted()));
         }
+
         cvStatistic.setEvents(eventDays);
 
         LineDataSet lineDataSet = new LineDataSet(listDate,lcStatistic.getResources().getString(R.string.progress));
@@ -147,6 +149,7 @@ public class HabitStatisticAdapter extends
         lineDataSet.setValueTextSize(30 / density);
 
         LineData lineData = new LineData();
+
         lineData.addDataSet(lineDataSet);
         lcStatistic.setData(lineData);
 
@@ -163,7 +166,7 @@ public class HabitStatisticAdapter extends
 
     }
 
-    public int getColorByPercent(int percent){
+    public static int getColorByPercent(int percent){
         if (percent > 75 ) return R.color.habit_complete;
         if (percent > 50 ) return R.color.habit_good;
         if (percent > 25 ) return R.color.habit_half;

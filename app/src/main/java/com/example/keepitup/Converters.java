@@ -9,6 +9,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.util.Date;
@@ -39,13 +40,13 @@ public class Converters {
     }
 
     @TypeConverter
-    public static long daysOfWeekToBoolean(LocalTime time){
+    public static long timeToLong(LocalTime time){
         return time.getLong(ChronoField.SECOND_OF_DAY);
     }
 
     @TypeConverter
-    public static LocalTime daysOfWeekToBoolean(long timeLong){
-        return Instant.ofEpochSecond(timeLong)
-                .atZone(ZoneId.systemDefault()).toLocalTime();
+    public static LocalTime longToTime(long timeLong){
+        return Instant.ofEpochSecond(timeLong,0)
+                .atZone(ZoneOffset.UTC).toLocalTime();
     }
 }

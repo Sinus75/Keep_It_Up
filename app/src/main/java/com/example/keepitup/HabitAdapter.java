@@ -270,7 +270,7 @@ public class HabitAdapter extends
 
             btnOk.setOnClickListener(view_ -> {
                 int hour_ = timePicker.getHour(), minute_ = timePicker.getMinute();
-                edtNotificationTime.setText(String.format(Locale.getDefault(),
+                edtNotificationTime.setText( String.format(Locale.getDefault(),
                         "%02d:%02d", hour_ , minute_));
                 habit.setNotificationTime(LocalTime.of(hour_, minute_));
                 habitDao.update(habit);

@@ -52,8 +52,8 @@ public class Receiver extends BroadcastReceiver {
         mBuilder.setContentIntent(pendingIntent);
         mBuilder.setSmallIcon(icon);
         mBuilder.setColor(color);
-        mBuilder.setContentTitle("Your Title");
-        mBuilder.setContentText("Your text");
+        mBuilder.setContentTitle(name);
+        mBuilder.setContentText(context.getResources().getText(R.string.habit_notification_text));
         mBuilder.setPriority(Notification.PRIORITY_MAX);
         mBuilder.setStyle(bigText);
 

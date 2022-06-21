@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <style name="DialogCheckboxes" parent="Theme.AppCompat.Dialog">
         <item name="colorPrimary">@color/gray_while</item>
         <item name="colorOnPrimary">@color/gray_while</item>
